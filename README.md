@@ -1,98 +1,125 @@
-# Professional developer portfolio — React + Vite + Tailwind
+# My Portfolio
 
-Dark-first portfolio: fixed navbar with a script logo and a pill theme switch, a centred column with dashed borders, a banner space for your own image, your avatar overlapping it, a verified-badge name with a typewriter line, a flowing Tech Stack, a Freelancing card, projects, and pages for Projects, Designs, Blog and Contact.
+A soft, modern developer portfolio built with **React, Vite and Tailwind CSS**. It works on laptop, tablet and phone, in dark and light mode.
 
-## What's in it
+## Features
 
-| Feature | Where |
-|---|---|
-| Fixed navbar: script logo, Home / Projects / Designs / Blog / let's talk, **pill dark/light switch** (mobile menu included) | `src/components/Navbar.jsx`, `ThemeSwitch.jsx` |
-| **Banner image space**: just put your own picture at `public/banner.jpg` (until then a placeholder box shows). | `src/components/Banner.jsx` |
-| **Ending section**: GitHub contribution graph, social buttons, "Have an idea? Let's build something together.", Let's Talk button, "Made with ♥", floating hearts and a row of hopping pixel animals. | `Connect.jsx`, `GitHubActivity.jsx`, `Footer.jsx`, `PixelPets.jsx` |
-| **Left pull-rope** hangs from the navbar. Drag the knob down and let go (or just tap it) to switch dark/light. The new theme spreads out as a circle from the knob, with a click and a sound. | `src/components/ThemeRope.jsx` |
-| **Right rope with a wooden "HIRE ME" board**. It sways, swings harder on hover and links to the contact page. | `src/components/HireBoard.jsx` |
-| **Your photo** in a round gradient ring over the banner. | `src/components/Avatar.jsx` |
-| Name with **verified badge**, **typewriter** role line, small grey meta line | `src/components/Hero.jsx` |
-| **Who is …?** paragraphs with bold highlights | `src/pages/Home.jsx` |
-| **Tech Stack**: All / Frontend / Backend / Design / Tools tabs. Hover (or tap) a pill and it plays its own note: each category has its own "instrument" and every tech its own pitch. | `src/components/TechStack.jsx`, `playStack` in `src/lib/sound.js` |
-| **Freelancing** dashed card | `src/pages/Home.jsx` |
-| Projects, **Designs (grid)**, Blog and "let's talk" (contact form) pages | `src/pages/` |
-| **Sound** on theme switch, rope and tech-stack hover (generated in code, no audio files) + a mute icon | `src/lib/sound.js` |
-| **Circular reveal** when switching theme (View Transitions API), starting at the switch | `src/lib/theme.js` |
-| Responsive: laptop, tablet, phone | Tailwind breakpoints |
+- **Pull-rope theme switch.** Drag the rope on the left (or tap it) to switch dark and light mode. The new theme spreads out from the knob as a circle, with a soft sound.
+- **HIRE ME board** on the right-hand rope. It sways, swings on hover, and opens the Let's Talk page.
+- **Banner** with a separate image for dark mode and light mode, and your profile photo over it.
+- **Typewriter intro** under your name, with a verified badge.
+- **Tech Stack** with All / Frontend / Backend / Design / Tools tabs. Hover a tech and it bounces and plays its own note.
+- **Experience**, **Freelancing** and **Projects** sections on the Home page, plus full Experience and Projects pages.
+- **Live GitHub activity graph** and social buttons.
+- **Tech garden footer.** Real tech logos growing on stems, with sparkles, flowers, glowing dots and floating hearts.
+- **Let's Talk page** with a contact form. It is not in the navbar. Open it from the HIRE ME board or the footer button.
+- Sounds are generated in code with the Web Audio API (no audio files). Use the speaker icon in the navbar to mute.
 
-## Tech
+## Tech used
 
-React 19, Vite 7, Tailwind CSS 4, react-router-dom, react-icons. Files are `.jsx` (JavaScript). No TypeScript needed.
+React 19, Vite 7, Tailwind CSS 4, React Router 7, react-icons, Web Audio API, View Transitions API.
 
-## Files
+## Run it on your computer
 
-```
-portfolio-react/
-├── index.html                 ← fonts, meta, sets theme before first paint
-├── package.json  vite.config.js  vercel.json
-├── public/
-│   ├── photo-placeholder.svg  ← shown until you add photo.jpg
-│   ├── photo.jpg              ← ADD: YOUR profile photo, square ~600×600
-│   ├── banner.jpg             ← YOUR banner image (any size, around 1500 x 420 looks best)
-│   ├── resume.pdf             ← ADD: your resume
-│   ├── designs/               ← OPTIONAL: screenshots for the Designs page
-│   └── _redirects             ← Netlify: makes /contact etc. work after refresh
-└── src/
-    ├── main.jsx  App.jsx
-    ├── index.css              ← ★ colours (light + dark) and all custom styling
-    ├── data/site.js           ← ★ YOUR CONTENT: name, roles, links, text, skills, projects, designs, posts
-    ├── lib/sound.js  theme.js
-    ├── components/
-    │   Navbar  ThemeSwitch  SoundToggle  ThemeRope  HireBoard
-    │   Banner  Avatar  Hero
-    │   TechStack  ProjectCard  Connect  GitHubActivity  PixelPets  Footer  Rich
-    └── pages/  Home  Projects  Designs  Blog  Contact
-```
-
-## Install and run
-
-Needs Node.js 18+ (https://nodejs.org).
+You need [Node.js](https://nodejs.org) 18 or newer.
 
 ```bash
-cd portfolio-react
 npm install
-npm run dev          # http://localhost:5173
-npm run build        # creates dist/ for deployment
+npm run dev
 ```
 
-## Make it yours
+Open the link it prints (usually http://localhost:5173).
 
-1. **`src/data/site.js`** — change everything there: logo text (`handle`), name, typewriter `roles`, `meta` line, links, About text, skills, Freelancing text, projects, designs, blog posts. Put `**double stars**` around words you want bold/white.
-2. **`public/photo.jpg`** — your profile photo (square works best). It shows directly in the round avatar. Different file name? Change `photo` in `src/data/site.js`.
-3. **`public/banner.jpg`** — your banner image. Any picture or GIF works; if it has another name or extension, change `banner` in `src/data/site.js`.
-   - **GitHub graph:** set `githubUser` in `site.js` to your GitHub username (profile must be public). Social buttons use `github`, `youtube`, `instagram`, `twitter`, `linkedin` from the same file; delete a link and its button disappears.
-   - **Pixel animals:** each is a 12 x 12 grid of letters in `PixelPets.jsx`. Change letters/colours to redesign them, or delete a block to remove one.
-4. **`public/resume.pdf`** — your resume.
-5. **Colours** — top of `src/index.css` (`--bg`, `--frame`, `--brand` ...). Light and dark are separate blocks.
-6. **Nav labels / buttons** — `nav`, `primaryCta`, `secondaryCta`, `talkLabel` in `site.js`.
-7. **Skill icons** — every name in `skills` must exist in the `ICONS` map in `TechStack.jsx`. Add more by importing from `react-icons/si`.
-8. **No sound?** Delete `<SoundToggle />` in `Navbar.jsx`.
-9. **Ropes:** in `ThemeRope.jsx` change `BASE` (rope length), `MAX` and `TRIGGER` (how far you must pull). The board text is in `HireBoard.jsx`; its colours and size are in the ROPES block of `src/index.css`. To remove a rope, delete its line in `App.jsx`. The pill switch in the navbar does the same job as the left rope, so you can delete `<ThemeSwitch />` from `Navbar.jsx` if you only want the rope.
+## Where to edit your content
 
-On screens 1100px and wider the ropes hang in the empty side margins and stay in place while you scroll. On smaller screens they hang over the top corners and scroll away with the page.
+Almost everything is in **one file: `src/data/site.js`**.
 
-The contact form opens the visitor's email app with the message ready. To send from the page itself, plug EmailJS or Formspree into `submit()` in `src/pages/Contact.jsx`.
+| What                           | Where in `site.js`                                                         |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| Logo (top-left) and big name   | `handle`, `name`                                                           |
+| Typewriter words               | `roles`                                                                    |
+| Small grey line (age, country) | `meta`                                                                     |
+| Email and social links         | `email`, `github`, `youtube`, `instagram`, `linkedin`, `twitter`           |
+| GitHub activity graph          | `githubUser` (your username; profile must be public)                       |
+| Navbar links                   | `nav`                                                                      |
+| Buttons next to the photo      | `primaryCta`, `secondaryCta`                                               |
+| About section                  | `aboutTitle`, `about` (wrap words in `**double stars**` to make them bold) |
+| Tech Stack                     | `skills` (`{ name, cat }`; `cat` is Frontend, Backend, Design or Tools)    |
+| Experience                     | `experience`                                                               |
+| Freelancing card               | `freelanceTitle`, `freelance`                                              |
+| Projects                       | `projects`                                                                 |
+| Text above the footer          | `ctaLines`                                                                 |
+
+Other places:
+
+| What                                  | File                                                      |
+| ------------------------------------- | --------------------------------------------------------- |
+| Logos in the footer garden            | `src/components/TechGarden.jsx` (the `PLANTS` list)       |
+| Icon for a new tech in the Tech Stack | `src/components/TechStack.jsx` (the `ICONS` list)         |
+| HIRE ME board text and link           | `src/components/HireBoard.jsx`                            |
+| Rope length and pull distance         | `src/components/ThemeRope.jsx` (`BASE`, `MAX`, `TRIGGER`) |
+| Colours of the whole site             | top of `src/index.css`                                    |
+| Hover sounds                          | `src/lib/sound.js` (`VOICES`)                             |
+| Browser tab title                     | `index.html`                                              |
+
+## Images
+
+Put these in the `public` folder:
+
+```
+public/
+  photo.jpg          your profile photo (square works best)
+  banner-dark.jpg    banner shown in dark mode
+  banner-light.jpg   banner shown in light mode
+  resume.pdf         your resume
+```
+
+Use the exact names, or change the paths in `site.js`. Only have one banner? Save it under both names. A missing image shows a placeholder, so the page never breaks.
+
+## Project structure
+
+```
+index.html
+vercel.json              page-refresh fix for Vercel
+public/                  images, resume, _redirects (Netlify)
+src/
+  main.jsx
+  App.jsx                routes + ropes
+  index.css              colours and all styles
+  data/site.js           YOUR CONTENT
+  lib/
+    theme.js             dark/light + circular reveal
+    sound.js             all sounds
+  components/
+    Navbar  ThemeSwitch  SoundToggle  ThemeRope  HireBoard
+    Banner  Avatar  Hero  TechStack  ExperienceList
+    ProjectCard  Connect  GitHubActivity  TechGarden  Footer  Rich
+  pages/
+    Home  Experience  Projects  Contact
+```
 
 ## Deploy (free)
 
-**Vercel:** push to GitHub → vercel.com → *Add New Project* → import → *Deploy* (Vite is detected automatically).
-**Netlify:** *Add new site → Import from Git*; build `npm run build`, publish `dist`.
-**GitHub Pages:** set `base: "/repo-name/"` in `vite.config.js` and use `HashRouter` instead of `BrowserRouter` in `main.jsx`.
+### Vercel (easiest)
 
-## Notes
+1. Push this project to a GitHub repository. Do not upload `node_modules` or `dist`.
+2. Go to [vercel.com](https://vercel.com), sign in with GitHub, click **Add New, then Project**, and pick the repository.
+3. Vercel detects Vite. Keep the defaults (build command `npm run build`, output folder `dist`) and click **Deploy**.
+4. You get a link like `your-name.vercel.app`. Every `git push` updates the site automatically.
 
-- The circular theme reveal needs View Transitions (Chrome/Edge 111+, Safari 18+, Firefox 144+). Other browsers switch theme without the reveal.
-- Everything here (code, banner, text, avatar) is original; replace the placeholder text with your own.
+### Netlify
 
+Same steps at [netlify.com](https://netlify.com): build command `npm run build`, publish folder `dist`. The file `public/_redirects` is already set up.
 
-### Changing the tech stack
-In `src/data/site.js` the `skills` list is `{ name, cat }`. `cat` is one of Frontend / Backend / Design / Tools and picks the filter tab. The icon comes from the `ICONS` map in `TechStack.jsx` (add a line for a new tech). The hover sound is the category's instrument plus a note chosen by the tech's position inside its category, so just reorder the list to change the melody. Edit the instruments in `VOICES` in `sound.js`.
+## Troubleshooting
 
-### Footer pets from your own image
-Save ONE transparent PNG/WebP with all your pets as `public/pets.png` (or change `petsImage` in `site.js`). It replaces the drawn animals; delete the file to bring the drawn ones back. Make it about 1280 px wide, cropped tight around the pets.
+- **Placeholder box instead of my image.** The file name or folder is wrong. It must be inside `public`, not `src`.
+- **Old image still shows.** Hard refresh with Ctrl + Shift + R (Cmd + Shift + R on Mac).
+- **Page goes blank after editing `site.js`.** A comma or quote is missing near the lines you changed.
+- **GitHub graph is empty.** Check `githubUser` is your exact username and your profile is public.
+- **No sound.** Browsers allow sound only after the first click on the page. Check the speaker icon in the navbar is not muted.
+- **Push to GitHub fails with `RPC failed; HTTP 400`.** Run `git config --global http.postBuffer 524288000` and push again.
+
+## License
+
+Use it, change it and make it yours.
